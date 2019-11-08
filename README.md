@@ -8,7 +8,7 @@ Data came from three separate datasets:
 
 2. [TESS](https://tspace.library.utoronto.ca/handle/1807/24487) - This dataset came from the University of Toronto and contains 2,800 speech files made by two female actresses expressing seven different emotions: neutral, happy, sad, angry, fearful, surprise, and disgust.
 
-3. [SAVEE](http://kahlan.eps.surrey.ac.uk/savee/) - This is the Surrey Audio-Visual Expressed Emotion Database. It contains a total of 420 recordings which consist of four male actors expressing 7 different emotions: neutral, happy, sad, angry, fearful, surprise, and disgust.
+3. [SAVEE](http://kahlan.eps.surrey.ac.uk/savee/) - This is the Surrey Audio-Visual Expressed Emotion Database. It contains a total of 477 recordings which consist of four male actors expressing 7 different emotions: neutral, happy, sad, angry, fearful, surprise, and disgust.
 
 
 ## EDA
