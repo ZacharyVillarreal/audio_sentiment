@@ -1,6 +1,6 @@
 # Gathering Sentiment from Audio
 
-In many call center companies they have so many recorded calls but no way to efficiently filter through them.  The idea for this model is to gather sentiment from audio.  Right now it's to gather it from sentences, but I would like to train it more going forward to use for call centers to be able to flag any angry customers or clients to reduce churn.
+Many call center companies have so many recorded calls but no way to efficiently filter through them.  The idea for this model is to gather sentiment from audio.  Right now it's to gather it from sentences, but I would like to train it more going forward to use for call centers to be able to flag any angry customers or clients to reduce churn.
 
 Data came from three separate datasets:
 
@@ -12,6 +12,20 @@ Data came from three separate datasets:
 
 
 ## EDA
+
+![emotion_distribution](images/emotion_distribution.png?raw=true "Emotion Distribution")
+
+
+
+![angry_wave](images/angry_wave.png?raw=true "Angry") ![disgust_wave](images/disgust_wave.png?raw=true "Disgust") ![fearful_wave](images/fearful_wave.png?raw=true "Fearful") ![happy_wave](images/happy_wave.png?raw=true "Happy") ![neutral_wave](images/neutral_wave.png?raw=true "Neutral") ![sad_wave](images/sad_wave.png?raw=true "Sad") ![surprised_wave](images/surprised_wave.png?raw=true "Surprised")
+
+
+
+
+![angry_mfcc](images/angry_mfcc.png?raw=true "Angry") ![disgust_mfcc](images/disgust_mfcc.png?raw=true "Disgust") ![fearful_mfcc](images/fearful_mfcc.png?raw=true "Fearful") ![happy_mfcc](images/happy_mfcc.png?raw=true "Happy") ![neutral_mfcc](images/neutral_mfcc.png?raw=true "Neutral") ![sad_mfcc](images/sad_mfcc.png?raw=true "Sad") ![surprised_mfcc](images/surprised_mfcc.png?raw=true "Surprised")
+
+
+
 
 
 
