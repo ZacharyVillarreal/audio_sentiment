@@ -18,7 +18,9 @@ The data used for this model came from three separate datasets:
 
 ## EDA
 
-Since neutral and calm are very similar, I combined them together to show just neutral. There is an even distribution in emotions.
+Since neutral and calm are very similar, I combined them together to show just neutral. There is an even distribution in emotions.<br/>
+
+
 ![emotion_distribution](images/emotion_distribution.png?raw=true "Emotion Distribution")
 
 
@@ -28,7 +30,7 @@ Below are the waveplots for the combined files for each emotion.  The waveplots 
 
 
 
-Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from the audio clip. It scales the frequencies to make the features match more closely to what humans hear.
+Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from the audio clip. It scales the frequencies to make the features match more closely to what humans hear.<br/>
 ![angry_mfcc](images/angry_mfcc.png?raw=true "Angry") ![disgust_mfcc](images/disgust_mfcc.png?raw=true "Disgust") ![fearful_mfcc](images/fearful_mfcc.png?raw=true "Fearful") ![happy_mfcc](images/happy_mfcc.png?raw=true "Happy") ![neutral_mfcc](images/neutral_mfcc.png?raw=true "Neutral") ![sad_mfcc](images/sad_mfcc.png?raw=true "Sad") ![surprised_mfcc](images/surprised_mfcc.png?raw=true "Surprised")
 
 
@@ -39,23 +41,29 @@ Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from
 
 ## Preprocessing the Data
 
-First I looped through all of the files and pulled loaded them using librosa. I pulled the features chroma_stft, spectral_centroid, spectra_bandwidth, rolloff, zcr, and 20 mfccs. Then I updated the target emotions using a label encoder and scaled my features. 
+First I looped through all of the files and loaded them using librosa. I pulled the features chroma_stft, spectral_centroid, spectra_bandwidth, rolloff, zcr, and 20 mfccs. Then I used a one hot encoder for the  the target emotions using a label encoder and scaled my features. 
 
-
-## Trial and Error
-
-
+I preprocessed my data multiple ways in order to find the highest accuracy. 
+  1. The first model I used had used all data as is
+  2. I then tried to decrease the amount of emotions that were predicted. I did this two ways. The first way was to group
+  together negative, positive, and neutral feelings. The second way was to drop different emotions.
+  3. Next I tried to split it up between male and female with all emotions and then with both types of predicted emotions decreased.
+  4. I also tried to use spectrograms instead of mfccs and svm instead of cnn.
+  5. I also got tried using PCA on the mfccs to.
 
 
 
 ## Model
 
-For the model I chose to use CNN. 
+For the model I chose to use CNN. The base model was using all features.
+
+I creat
 
 
 ## Results
 
-So far with CNN I got a 65% 
+With the final model I got about 83% validation accuracy using the CNN model. When I input live data I got 45% on the new data.
 
 ## Future Attempts
-I want to try to use PCA on the mfccs and also try to use the information from a spectogram and see if that increases the accuracy of the predictions.
+I want to try to use PCA on the mfccs and also try to use the information from a spectogram and see if that increases the accuracy of the predictions. I also want to add in more live data to help train the model.
+
