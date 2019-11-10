@@ -1,8 +1,13 @@
 # Gathering Sentiment from Audio
 
-Many call center companies have so many recorded calls but no way to efficiently filter through them.  The idea for this model is to gather sentiment from audio.  Right now it's to gather it from sentences, but I would like to train it more going forward to use for call centers to be able to flag any angry customers or clients to reduce churn.
+Many call center companies have recorded calls but no way to efficiently filter through them. The goal for this model is to gather sentiment from audio files in order to allow businesses to easily flag any angry calls. This could potentially reduce churn by calling attention to unhappy customers. It could also be used as a training tool to see if employees are effectively handling these calls.
 
-Data came from three separate datasets:
+In my specific case, I want to relate this to the home care industry.  The employee turnover rate is at an all time high of 82% in 2018. I want to use this model to flag any angry calls from both customers and caregivers in the field in an effort to reduce employee and customer churn.
+
+
+### Data
+
+The data used for this model came from three separate datasets:
 
 1. [RAVDESS](https://zenodo.org/record/1188976#.XcJFp1FKi00) - This is the Ryerson-Audio Visual Database of Emotional Speech and Song. It contains 1,440 speech files which is compiled from 12 male and 12 female actors expressing eight different emotions: calm, neutral, happy, sad, angry, fearful, surprise, and disgust.
 
@@ -13,15 +18,17 @@ Data came from three separate datasets:
 
 ## EDA
 
+Since neutral and calm are very similar, I combined them together to show just neutral. There is an even distribution in emotions.
 ![emotion_distribution](images/emotion_distribution.png?raw=true "Emotion Distribution")
 
 
 
+Below are the waveplots for the combined files for each emotion.  The waveplots show the amplitude over time.
 ![angry_wave](images/angry_wave.png?raw=true "Angry") ![disgust_wave](images/disgust_wave.png?raw=true "Disgust") ![fearful_wave](images/fearful_wave.png?raw=true "Fearful") ![happy_wave](images/happy_wave.png?raw=true "Happy") ![neutral_wave](images/neutral_wave.png?raw=true "Neutral") ![sad_wave](images/sad_wave.png?raw=true "Sad") ![surprised_wave](images/surprised_wave.png?raw=true "Surprised")
 
 
 
-
+Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from the audio clip. It scales the frequencies to make the features match more closely to what humans hear.
 ![angry_mfcc](images/angry_mfcc.png?raw=true "Angry") ![disgust_mfcc](images/disgust_mfcc.png?raw=true "Disgust") ![fearful_mfcc](images/fearful_mfcc.png?raw=true "Fearful") ![happy_mfcc](images/happy_mfcc.png?raw=true "Happy") ![neutral_mfcc](images/neutral_mfcc.png?raw=true "Neutral") ![sad_mfcc](images/sad_mfcc.png?raw=true "Sad") ![surprised_mfcc](images/surprised_mfcc.png?raw=true "Surprised")
 
 
