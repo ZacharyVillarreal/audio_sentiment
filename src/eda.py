@@ -9,44 +9,31 @@ import pandas as pd
 import os
 
 
+def data_source(x):
+    if x.split('/')[1] == 'tess':
+        return 'tess'
+    elif x.split('/')[1] == 'savee':
+        return 'savee'
+    else:
+        return 'ravdess'
+    
 
-def clean_radvess(df):
-    df['filename'] = df['filename'].str.split('/')
-    df['filename'] = df['filename'].apply(lambda x: x[2])
-    df['emotion'] = df['filename'].apply(lambda x: x[6:-16])
-    emotional_dict = {'01' : 'neutral', '02' : 'calm', '03' : 'happy', '04' : 'sad', '05' : 'angry', '06' : 'fearful', '07' : 'disgust', '08' : 'surprised'}
-    df['emotion'] = df['emotion'].apply(lambda x: emotional_dict[x])
-    return df
-
-
-def clean_tess(df):
-    emotions = ['neutral', 'fear', 'happy', 'angry', 'sad', 'ps', 'disgust']
-    def emotion(x):
-        for i in x[:-4].split('_'):
-            if i in emotions:
-                return i
-
-    df['emotion'] = df['filename'].apply(lambda x: emotion(x))
-    return df
-
-
-def clean_savee(df):
-    emotions = {'a' : 'angry', 'd' : 'disgust', 'f' : 'fearful', 'h' : 'happy', 'n' : 'neutral', 'sa' : 'sad', 'su' : 'surprised'}
-    def emotion(x):
-        for i in x[:-6].split('/'):
-            if i in emotions:
-                return emotions[i]
-
-    df['emotion'] = df['filename'].apply(lambda x: emotion(x))
-    return df
+def eda_data(df):
+    df = pd.read_csv('data/data.csv')
+    df = df[['filename', 'emotion']]
+    df['emotion'] = df['emotion'].str.split('_')
+    df['gender'] = df['emotion'].apply(lambda x : x[0])
+    df['emotion'] = df['emotion'].apply(lambda x: x[1])
+    df['type'] = df['filename'].apply(lambda x:data_source(x))
+    
+    return df[['filename', 'emotion', 'gender', 'type']]
 
 
-def uniform_emotion(x):
-    emotion_dict = {'fear' : 'fearful', 'ps' : 'surprised', 'calm' : 'neutral'}
-    if x in emotion_dict:
-        return emotion_dict[x]
-    else: 
-        return x
+def distributions(df, col, title):
+    count = df.groupby(col).count()['filename']
+    fig, ax = plt.subplots(figsize=(6,6))
+    ax.pie(count,labels= count.index.str.capitalize(),  autopct='%1.1f%%', textprops={'fontsize': 13})
+    ax.set_title('Distribution of '+title, fontsize=15)
 
 
 def calc_fft(y, rate):
@@ -64,7 +51,7 @@ def frequencies(df):
     emotion = 'happy sad angry neutral surprised fearful disgust'
     for i in emotion.split(' '):
         wav_file = df[df['emotion'] == i].iloc[0,0]
-        signal, rate = librosa.load('audio/'+wav_file, mono=True, duration=3, offset = .5) #wav file can detect sampling rate
+        signal, rate = librosa.load(wav_file, mono=True, duration=3, offset = .5) #wav file can detect sampling rate
         signals[i] = signal
         fft[i] = calc_fft(signal, rate)
 
