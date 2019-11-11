@@ -22,7 +22,8 @@ Since neutral and calm are very similar, I combined them together to show just n
 
 
 ![emotion_distribution](images/emotion_distribution.png?raw=true "Emotion Distribution")
-
+![gender_distribution](images/gender_distribution.png?raw=true "Gender Distribution")
+![datasource_distribution](images/datasource_distribution.png?raw=true "Data Source Distribution")
 
 
 Below are the waveplots for the combined files for each emotion.  The waveplots show the amplitude over time.
@@ -37,33 +38,26 @@ Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from
 
 
 
+## Preprocessing the Data 
 
-
-## Preprocessing the Data
-
-First I looped through all of the files and loaded them using librosa. I pulled the features chroma_stft, spectral_centroid, spectra_bandwidth, rolloff, zcr, and 20 mfccs. Then I used a one hot encoder for the  the target emotions using a label encoder and scaled my features. 
+First I looped through all of the files and loaded them using librosa. I pulled the features chroma_stft, spectral_centroid, spectra_bandwidth, rolloff, zcr, and 20 MFCCs. Then I used a one hot encoder for the target emotions and scaled my features. 
 
 I preprocessed my data multiple ways in order to find the highest accuracy. 
-  1. The first model I used had used all data as is
-  2. I then tried to decrease the amount of emotions that were predicted. I did this two ways. The first way was to group
-  together negative, positive, and neutral feelings. The second way was to drop different emotions.
-  3. Next I tried to split it up between male and female with all emotions and then with both types of predicted emotions decreased.
-  4. I also tried to use spectrograms instead of mfccs and svm instead of cnn.
-  5. I also got tried using PCA on the mfccs to.
-
+  1. Use all the data as is 
+  2. Decrease the amount of emotions that were predicted.
+      - The first way was to group together negative, positive, and neutral feelings. 
+      - The second way was to drop different emotions.
+  3. Split up the data between male and female with all emotions and then with both types of predicted emotions decreased.
+  4. Use PCA to choose my MFCC features.
 
 
 ## Model
 
-For the model I chose to use CNN. The base model was using all features.
+The base model that I used had all features using a CNN. I was having issues with overfitting to the training data so I added in more dropouts. I used four layers in my network and calculated loss using cross entropy.
 
-I creat
+For the final model I chose to split the data between men and women, and also drop the emotion of disgust. With this model I got about 83% validation accuracy using a CNN. When I input live data I got 45% accuracy on the new data. 
 
+## Future Improvements
+I would like to continue this project to add in more live data to help train the model. I would like to input call logs to try to interpret emotion after that. I will have to find a way to work around that there will be two different voices in the call logs.
 
-## Results
-
-With the final model I got about 83% validation accuracy using the CNN model. When I input live data I got 45% on the new data.
-
-## Future Attempts
-I want to try to use PCA on the mfccs and also try to use the information from a spectogram and see if that increases the accuracy of the predictions. I also want to add in more live data to help train the model.
-
+ Click [here](https://docs.google.com/presentation/d/1QjZdP__8h-kl2TJddOjDnTg-1VRrJiPaL3StbDlvLdk/edit?usp=sharing) for access to the powerpoint slides.
