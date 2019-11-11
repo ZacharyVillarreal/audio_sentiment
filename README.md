@@ -43,7 +43,7 @@ Mel Frequency Cepstral Coefficient (MFCC) are the features that I extracted from
 First I looped through all of the files and loaded them using librosa. I pulled the features chroma_stft, spectral_centroid, spectra_bandwidth, rolloff, zcr, and 20 MFCCs. Then I used a one hot encoder for the target emotions and scaled my features. 
 
 I preprocessed my data multiple ways in order to find the highest accuracy. 
-  1. Use all the data as is 
+  1. Use all the data as is.
   2. Decrease the amount of emotions that were predicted.
       - The first way was to group together negative, positive, and neutral feelings. 
       - The second way was to drop different emotions.
@@ -58,6 +58,6 @@ The base model that I used had all features using a CNN. I was having issues wit
 For the final model I chose to split the data between men and women, and also drop the emotion of disgust. With this model I got about 83% validation accuracy using a CNN. When I input live data I got 45% accuracy on the new data. 
 
 ## Future Improvements
-I would like to continue this project to add in more live data to help train the model. I would like to input call logs to try to interpret emotion after that. I will have to find a way to work around that there will be two different voices in the call logs.
+Future improvements for this project would be to add in more live data to help train the model. I would like to input call logs to try to interpret emotion after that. I will have to find a way to work around that there will be two different voices in the call logs and that the calls will be longer than the data I have in the training set.
 
  Click [here](https://docs.google.com/presentation/d/1QjZdP__8h-kl2TJddOjDnTg-1VRrJiPaL3StbDlvLdk/edit?usp=sharing) for access to the powerpoint slides.
