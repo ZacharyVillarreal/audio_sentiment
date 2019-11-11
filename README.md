@@ -23,7 +23,6 @@ Since neutral and calm are very similar, I combined them together to show just n
 
 ![emotion_distribution](images/emotion_distribution.png?raw=true "Emotion Distribution")
 ![gender_distribution](images/gender_distribution.png?raw=true "Gender Distribution")
-![datasource_distribution](images/datasource_distribution.png?raw=true "Data Source Distribution")
 
 
 Below are the waveplots for the combined files for each emotion.  The waveplots show the amplitude over time.
@@ -55,9 +54,14 @@ I preprocessed my data multiple ways in order to find the highest accuracy.
 
 The base model that I used had all features using a CNN. I was having issues with overfitting to the training data so I added in more dropouts. I used four layers in my network and calculated loss using cross entropy.
 
-For the final model I chose to split the data between men and women, and also drop the emotion of disgust. With this model I got about 83% validation accuracy using a CNN. When I input live data I got 45% accuracy on the new data. 
+For the final model I chose to split the data between men and women, and also drop the emotion of disgust. With this model I got about 81% validation accuracy using a CNN. When I input live data I got 45% accuracy on the new data. 
 
 ## Future Improvements
 Future improvements for this project would be to add in more live data to help train the model. I would like to input call logs to try to interpret emotion after that. I will have to find a way to work around that there will be two different voices in the call logs and that the calls will be longer than the data I have in the training set.
+
+
+<br/>
+<br/>
+<br/>
 
  Click [here](https://docs.google.com/presentation/d/1QjZdP__8h-kl2TJddOjDnTg-1VRrJiPaL3StbDlvLdk/edit?usp=sharing) for access to the powerpoint slides.
