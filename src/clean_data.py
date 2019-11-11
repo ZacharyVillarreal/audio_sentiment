@@ -40,7 +40,7 @@ def uniform_emotion(x):
 
 
 def gender(x):
-    if int(x[35:-4]) % 2 == 0:
+    if int(x[41:-4]) % 2 == 0:
         return 'female'
     else:
         return 'male'
@@ -84,7 +84,7 @@ df = df[df['emotion'].notnull()]
 
 
 ## remove disgust
-df = df[df['emotion'] != 'disgust']
+# df = df[df['emotion'] != 'disgust']
 
 ## add new column for gender_emotion
 df['emotion'] = df['gender'] + '_' + df['emotion']
