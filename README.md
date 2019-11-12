@@ -54,7 +54,7 @@ I preprocessed my data multiple ways in order to find the highest accuracy.
 
 The base model that I used had all features using a CNN. I was having issues with overfitting to the training data so I added in more dropouts. I used four layers in my network and calculated loss using cross entropy.
 
-For the final model I chose to split the emotions between angry and every else.  Since the main goal of the project is to detect angry customers, I didn't need to predict what any other emotion is, just angry or not angry. With this model I got about 96% validation accuracy using a CNN with a loss of .06.  When I input live data I got 74% accuracy on the new data. 
+Since the main goal of the project is to detect angry customers, I chose to split the emotions between angry and not angry.  With this final model I got about 96% validation accuracy using a CNN with a loss of .06. When I input live data I got 74% accuracy on the new data.
 
 ## Future Improvements
 Future improvements for this project would be to add in more live data to help train the model. I would like to input call logs to try to interpret emotion after that. I will have to find a way to work around that there will be two different voices in the call logs and that the calls will be longer than the data I have in the training set.
