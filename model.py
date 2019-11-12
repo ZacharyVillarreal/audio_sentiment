@@ -13,12 +13,20 @@ from keras.models import Sequential
 from keras.layers import Conv1D, Conv2D, MaxPooling1D, Flatten, LSTM, Activation, Dropout, Dense
 
 ## import data
-df = pd.read_csv('data/data.csv')
-df = df[df['emotion'] != 'male_disgust']
-df = df[df['emotion'] != 'female_disgust'].drop(columns='filename')
+df = pd.read_csv('data/data.csv').drop(columns='filename')
+df['emotion'] = df['emotion'].str.split('_')
+df['emotion'] = df['emotion'].apply(lambda x: x[1])
+
+def emotion(x):
+    if x == 'angry':
+        return x
+    else:
+        return 'neutral'
+
+df['emotion'] = df['emotion'].apply(lambda x: emotion(x))
+
 from sklearn.utils import shuffle
 df = shuffle(df)
-
 ## create y
 emotion = df['emotion']
 encoder = LabelEncoder()
@@ -70,7 +78,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 
-model.fit(X_train, y_train, batch_size=16, epochs=24, validation_data=(X_test, y_test))
+model.fit(X_train, y_train, batch_size=, epochs=10, validation_data=(X_test, y_test))
 
 
 import pickle
